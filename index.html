@@ -1,655 +1,655 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Hair Salon</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400&family=Oswald:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet" />
-  <style>
-    /* Universal Box-sizing and Base Styles */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Nunito Sans', sans-serif;
-      background-color: #FFFFFF; /* Main background white */
-      color: #000000; /* Main text black */
-      line-height: 1.6;
-      font-size: 1.25rem;
-      text-align: center;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Hair Salon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400&family=Oswald:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet" />
+    <style>
+        /* Universal Box-sizing and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #FFFFFF; /* Main background white */
+            color: #000000; /* Main text black */
+            line-height: 1.6;
+            font-size: 1.25rem;
+            text-align: center;
+        }
 
-    /* Header Styles */
-    header {
-      background-color: #F7F5F2;
-      color: #9D8F72;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed; /* Fixed position for the semi-lock effect */
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 100; /* Ensure header is above other content */
-      transition: top 0.3s ease-in-out; /* Smooth transition for hiding/showing */
-    }
-    .logo img {
-      height: 50px; /* Increased the height of the logo image */
-    }
+        /* Header Styles */
+        header {
+            background-color: #F7F5F2;
+            color: #9D8F72;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed; /* Fixed position for the semi-lock effect */
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 100; /* Ensure header is above other content */
+            transition: top 0.3s ease-in-out; /* Smooth transition for hiding/showing */
+        }
+        .logo img {
+            height: 50px; /* Increased the height of the logo image */
+        }
 
-    /* Desktop Navigation */
-    nav.desktop-nav {
-      display: block;
-    }
-    nav.desktop-nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 2rem;
-      font-family: 'Roboto', sans-serif;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-    nav.desktop-nav a:hover {
-        color: #ddd;
-    }
+        /* Desktop Navigation */
+        nav.desktop-nav {
+            display: block;
+        }
+        nav.desktop-nav a {
+            color: #9D8F72; /* Changed: Navigation font color */
+            text-decoration: none;
+            margin-left: 2rem;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        nav.desktop-nav a:hover {
+            color: #CD853F; /* Kept existing hover color, but could change if desired */
+        }
+
+        /* Hamburger Menu (Hidden by default on desktop) */
+        .hamburger-menu {
+            display: none; /* Hidden on desktop */
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 20;
+        }
+        .hamburger-menu .bar {
+            height: 3px;
+            background-color: #9D8F72; /* Changed: Hamburger color */
+            width: 100%;
+        }
+
+        /* Mobile Navigation (Hidden by default, shown with JS) */
+        nav.mobile-nav {
+            display: none; /* Hidden by default */
+            position: fixed; /* Use fixed for mobile nav too */
+            top: 70px; /* Positions it right below the header (adjust if header height changes) */
+            left: 0;
+            width: 100%;
+            background-color: rgba(247, 245, 242, 0.95); /* Adjusted: Semi-transparent to match header, slightly less transparent */
+            z-index: 90;
+            text-align: right;
+            transform: translateY(-100%); /* Start off-screen */
+            transition: transform 0.3s ease-in-out;
+        }
+        nav.mobile-nav.open {
+            display: block; /* Toggled by JavaScript */
+            transform: translateY(0); /* Slide in */
+        }
+        nav.mobile-nav a {
+            color: #9D8F72; /* Changed: Mobile navigation font color */
+            display: block;
+            padding: 1rem;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(157, 143, 114, 0.2); /* Adjusted: Border color for mobile nav items */
+        }
+        nav.mobile-nav a:last-child {
+            border-bottom: none;
+        }
+        nav.mobile-nav a:hover {
+            background-color: rgba(157, 143, 114, 0.1); /* Adjusted: Hover background for mobile nav items */
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background-image: url('https://github.com/mmp03patane/HAIR/blob/main/diy-hair-hacks-using-coca-cola-for-hair-shine-and-volume.jpg?raw=true');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 1rem; /* More padding for hero section */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 100vh; /* Make hero section full viewport height */
+            color: #fff; /* White text for contrast on background image */
+            position: relative; /* Needed for overlay */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay for better text readability */
+            z-index: 1;
+        }
+
+        .hero > * { /* All direct children of hero to be above overlay */
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 4.5rem; /* Larger font for desktop */
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Text shadow for readability */
+        }
+
+        .hero h2 { /* Using h2 for "Now taking new clients." */
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+            color: #FFFFFF; /* Changed: "Now taking new clients" color */
+        }
+
+        .cta-button {
+            background-color: #F7F5F2; /* Changed: Button color */
+            color: #9D8F72; /* Changed: Button text color for contrast */
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.4rem;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            border-radius: 50px; /* More rounded button */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+            display: inline-block; /* Allow padding and margin */
+            text-decoration: none; /* Remove underline for anchor */
+        }
+
+        .cta-button:hover {
+            background-color: #EDE8E1; /* Adjusted: Lighter hover color for new button color */
+            transform: translateY(-3px); /* Slight lift on hover */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* General Section Styles (for new sections) */
+        section {
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        section h2 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 3rem;
+            color: #000000;
+            margin-bottom: 2.5rem;
+        }
+
+        section p {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        /* Price List Section */
+        .price-list-section {
+            background-color: #F7F5F2; /* Changed: Price list section background */
+        }
+
+        .price-list-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background-color: #FFFFFF;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            text-align: left;
+        }
+
+        .price-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: #9D8F72; /* Changed: Price card H3 headings */
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .price-item strong {
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: #FFFFFF;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .about-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        /* Booking Form Section */
+        .booking-form-section {
+            background-color: #F8F8F8;
+        }
+
+        .booking-form-panel {
+            background-color: #FFFFFF;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            color: #222;
+        }
+
+        .booking-form-panel label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .booking-form-panel input[type="text"],
+        .booking-form-panel input[type="email"],
+        .booking-form-panel input[type="tel"],
+        .booking-form-panel input[type="date"],
+        .booking-form-panel input[type="time"],
+        .booking-form-panel textarea,
+        .booking-form-panel select {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 1rem;
+            color: #222;
+        }
+
+        .booking-form-panel textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .booking-form-panel button {
+            background-color: #F7F5F2; /* Changed: Button color */
+            color: #9D8F72; /* Changed: Button text color */
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .booking-form-panel button:hover {
+            background-color: #EDE8E1; /* Adjusted: Lighter hover color for new button color */
+        }
 
 
-    /* Hamburger Menu (Hidden by default on desktop) */
-    .hamburger-menu {
-      display: none; /* Hidden on desktop */
-      width: 30px;
-      height: 21px;
-      cursor: pointer;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 20;
-    }
-    .hamburger-menu .bar {
-      height: 3px;
-      background-color: #fff;
-      width: 100%;
-    }
+        /* --- MEDIA QUERIES FOR MOBILE (max-width: 767px) --- */
+        @media (max-width: 767px) {
+            /* Show hamburger menu and hide desktop nav on mobile */
+            .hamburger-menu {
+                display: flex; /* Show hamburger */
+            }
+            nav.desktop-nav {
+                display: none; /* Hide desktop nav */
+            }
+            header {
+                padding: 0.8rem 1.5rem; /* Reduced top and bottom padding for a smaller mobile header */
+            }
 
-    /* Mobile Navigation (Hidden by default, shown with JS) */
-    nav.mobile-nav {
-      display: none; /* Hidden by default */
-      position: fixed; /* Use fixed for mobile nav too */
-      top: 70px; /* Positions it right below the header (adjust if header height changes) */
-      left: 0;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.8); /* Slightly darker for mobile menu */
-      z-index: 90;
-      text-align: right;
-      transform: translateY(-100%); /* Start off-screen */
-      transition: transform 0.3s ease-in-out;
-    }
-    nav.mobile-nav.open {
-      display: block; /* Toggled by JavaScript */
-      transform: translateY(0); /* Slide in */
-    }
-    nav.mobile-nav a {
-      color: #fff;
-      display: block;
-      padding: 1rem;
-      text-transform: uppercase;
-      font-family: 'Roboto', sans-serif;
-      font-weight: bold;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    nav.mobile-nav a:last-child {
-        border-bottom: none;
-    }
-    nav.mobile-nav a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
+            .logo {
+                margin-left: 0; /* Reset any negative margin from previous site */
+            }
+            
+            .hero {
+                padding: 6rem 1rem; /* Adjust padding for mobile hero */
+            }
 
-    /* Hero Section Styles */
-    .hero {
-      background-image: url('https://github.com/mmp03patane/HAIR/blob/main/diy-hair-hacks-using-coca-cola-for-hair-shine-and-volume.jpg?raw=true');
-      background-size: cover;
-      background-position: center;
-      padding: 8rem 1rem; /* More padding for hero section */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      min-height: 100vh; /* Make hero section full viewport height */
-      color: #fff; /* White text for contrast on background image */
-      position: relative; /* Needed for overlay */
-    }
+            .hero h1 {
+                font-size: 3rem; /* Smaller font for mobile heading */
+            }
 
-    .hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay for better text readability */
-        z-index: 1;
-    }
+            .hero h2 {
+                font-size: 1.8rem; /* Adjusted font size for mobile */
+            }
 
-    .hero > * { /* All direct children of hero to be above overlay */
-        position: relative;
-        z-index: 2;
-    }
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+            }
 
-    .hero h1 {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 700;
-      font-size: 4.5rem; /* Larger font for desktop */
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Text shadow for readability */
-    }
+            /* General Section Mobile Styles */
+            section h2 {
+                font-size: 2.2rem;
+                margin-bottom: 1.8rem;
+            }
 
-    .hero h2 { /* Using h2 for "Now taking new clients." */
-        font-family: 'Roboto', sans-serif;
-        font-size: 2.2rem;
-        margin-bottom: 2rem;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-    }
+            section p {
+                font-size: 1.1rem;
+            }
 
-    .cta-button {
-      background-color: #A0522D; /* A nice brown/earthy tone for the button */
-      color: #fff;
-      border: none;
-      padding: 1.2rem 3rem;
-      font-size: 1.4rem;
-      font-family: 'Roboto', sans-serif;
-      text-transform: uppercase;
-      border-radius: 50px; /* More rounded button */
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      font-weight: bold;
-      display: inline-block; /* Allow padding and margin */
-      text-decoration: none; /* Remove underline for anchor */
-    }
+            /* Price List Section Mobile */
+            .price-card {
+                min-width: unset;
+                max-width: 90%;
+                margin: 0 auto;
+            }
 
-    .cta-button:hover {
-      background-color: #CD853F; /* Lighter brown on hover */
-      transform: translateY(-3px); /* Slight lift on hover */
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
+            .price-card h3 {
+                font-size: 1.6rem;
+            }
 
-    /* General Section Styles (for new sections) */
-    section {
-        padding: 4rem 1rem;
-        text-align: center;
-    }
+            .price-item {
+                font-size: 1rem;
+            }
 
-    section h2 {
-        font-family: 'Oswald', sans-serif;
-        font-weight: 700;
-        font-size: 3rem;
-        color: #000000;
-        margin-bottom: 2.5rem;
-    }
+            /* About Section Mobile */
+            .about-content {
+                flex-direction: column;
+            }
 
-    section p {
-        font-family: 'Nunito Sans', sans-serif;
-        font-size: 1.2rem;
-        color: #333;
-        max-width: 800px;
-        margin: 0 auto 1.5rem auto;
-    }
+            /* Booking Form Section Mobile */
+            .booking-form-panel {
+                padding: 2rem 1.5rem;
+                max-width: 90%;
+            }
 
-    /* Price List Section */
-    .price-list-section {
-        background-color: #F8F8F8; /* Light off-white */
-    }
+            .booking-form-panel label {
+                font-size: 0.9rem;
+            }
 
-    .price-list-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 2rem;
-        max-width: 1000px;
-        margin: 0 auto;
-    }
+            .booking-form-panel input[type="text"],
+            .booking-form-panel input[type="email"],
+            .booking-form-panel input[type="tel"],
+            .booking-form-panel input[type="date"],
+            .booking-form-panel input[type="time"],
+            .booking-form-panel textarea,
+            .booking-form-panel select {
+                padding: 0.6rem;
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
 
-    .price-card {
-        background-color: #FFFFFF;
-        border: 1px solid #eee;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        padding: 2rem;
-        flex: 1;
-        min-width: 280px;
-        max-width: 350px;
-        text-align: left;
-    }
-
-    .price-card h3 {
-        font-family: 'Oswald', sans-serif;
-        font-size: 1.8rem;
-        color: #A0522D; /* Brown accent */
-        margin-bottom: 1.5rem;
-        text-align: center;
-    }
-
-    .price-item {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.8rem;
-        font-family: 'Nunito Sans', sans-serif;
-        font-size: 1.1rem;
-        color: #333;
-    }
-
-    .price-item strong {
-        color: #000;
-        font-weight: 600;
-    }
-
-    /* About Section */
-    .about-section {
-        background-color: #FFFFFF;
-    }
-
-    .about-content {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        max-width: 1000px;
-        margin: 0 auto;
-        text-align: left;
-    }
-
-    .about-content img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .about-text {
-        font-size: 1.15rem;
-        line-height: 1.8;
-    }
-
-    /* Booking Form Section */
-    .booking-form-section {
-        background-color: #F8F8F8;
-    }
-
-    .booking-form-panel {
-        background-color: #FFFFFF;
-        padding: 3rem 2rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        margin: 0 auto;
-        text-align: left;
-        color: #222;
-    }
-
-    .booking-form-panel label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-family: 'Roboto', sans-serif;
-        font-weight: bold;
-        font-size: 1rem;
-    }
-
-    .booking-form-panel input[type="text"],
-    .booking-form-panel input[type="email"],
-    .booking-form-panel input[type="tel"],
-    .booking-form-panel input[type="date"],
-    .booking-form-panel input[type="time"],
-    .booking-form-panel textarea,
-    .booking-form-panel select {
-        width: 100%;
-        padding: 0.8rem;
-        margin-bottom: 1.5rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-family: 'Nunito Sans', sans-serif;
-        font-size: 1rem;
-        color: #222;
-    }
-
-    .booking-form-panel textarea {
-        resize: vertical;
-        min-height: 100px;
-    }
-
-    .booking-form-panel button {
-        background-color: #A0522D;
-        color: #fff;
-        border: none;
-        padding: 1rem 2.5rem;
-        font-size: 1.2rem;
-        font-family: 'Roboto', sans-serif;
-        text-transform: uppercase;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        font-weight: bold;
-        display: block;
-        width: fit-content;
-        margin: 0 auto;
-    }
-
-    .booking-form-panel button:hover {
-        background-color: #CD853F;
-    }
-
-
-    /* --- MEDIA QUERIES FOR MOBILE (max-width: 767px) --- */
-    @media (max-width: 767px) {
-      /* Show hamburger menu and hide desktop nav on mobile */
-      .hamburger-menu {
-        display: flex; /* Show hamburger */
-      }
-      nav.desktop-nav {
-        display: none; /* Hide desktop nav */
-      }
-      header {
-        padding: 0.8rem 1.5rem; /* Reduced top and bottom padding for a smaller mobile header */
-      }
-
-      .logo {
-        margin-left: 0; /* Reset any negative margin from previous site */
-      }
-      
-      .hero {
-        padding: 6rem 1rem; /* Adjust padding for mobile hero */
-      }
-
-      .hero h1 {
-        font-size: 3rem; /* Smaller font for mobile heading */
-      }
-
-      .hero h2 {
-        font-size: 1.8rem; /* Adjusted font size for mobile */
-      }
-
-      .cta-button {
-        padding: 1rem 2rem;
-        font-size: 1.2rem;
-      }
-
-      /* General Section Mobile Styles */
-      section h2 {
-        font-size: 2.2rem;
-        margin-bottom: 1.8rem;
-      }
-
-      section p {
-        font-size: 1.1rem;
-      }
-
-      /* Price List Section Mobile */
-      .price-card {
-        min-width: unset;
-        max-width: 90%;
-        margin: 0 auto;
-      }
-
-      .price-card h3 {
-        font-size: 1.6rem;
-      }
-
-      .price-item {
-        font-size: 1rem;
-      }
-
-      /* About Section Mobile */
-      .about-content {
-          flex-direction: column;
-      }
-
-      /* Booking Form Section Mobile */
-      .booking-form-panel {
-        padding: 2rem 1.5rem;
-        max-width: 90%;
-      }
-
-      .booking-form-panel label {
-        font-size: 0.9rem;
-      }
-
-      .booking-form-panel input[type="text"],
-      .booking-form-panel input[type="email"],
-      .booking-form-panel input[type="tel"],
-      .booking-form-panel input[type="date"],
-      .booking-form-panel input[type="time"],
-      .booking-form-panel textarea,
-      .booking-form-panel select {
-        padding: 0.6rem;
-        font-size: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .booking-form-panel button {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
-      }
-    }
-  </style>
+            .booking-form-panel button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <a href="index.html" class="logo">
-      <img src="https://github.com/mmp03patane/HAIR/blob/main/updated_hair-removebg-preview.png?raw=true" alt="Hair Salon Logo" />
-    </a>
-    <div class="hamburger-menu" onclick="toggleMobileMenu()">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
-    </div>
-    <nav class="desktop-nav">
-      <a href="#price-list">Price List</a>
-      <a href="#about">About</a>
-      <a href="#book-now">Book Now</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <nav class="mobile-nav" id="mobileNav">
-      <a href="#price-list" onclick="toggleMobileMenu()">Price List</a>
-      <a href="#about" onclick="toggleMobileMenu()">About</a>
-      <a href="#book-now" onclick="toggleMobileMenu()">Book Now</a>
-      <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
-    </nav>
-  </header>
+    <header>
+        <a href="index.html" class="logo">
+            <img src="https://github.com/mmp03patane/HAIR/blob/main/updated_hair-removebg-preview.png?raw=true" alt="Hair Salon Logo" />
+        </a>
+        <div class="hamburger-menu" onclick="toggleMobileMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <nav class="desktop-nav">
+            <a href="#price-list">Price List</a>
+            <a href="#about">About</a>
+            <a href="#book-now">Book Now</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="#price-list" onclick="toggleMobileMenu()">Price List</a>
+            <a href="#about" onclick="toggleMobileMenu()">About</a>
+            <a href="#book-now" onclick="toggleMobileMenu()">Book Now</a>
+            <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+        </nav>
+    </header>
 
-  <section class="hero">
-    <h1>WELCOME</h1>
-    <h2>Now taking new clients.</h2>
-    <a href="#book-now" class="cta-button">Book now.</a>
-  </section>
-
-  <section id="price-list" class="price-list-section">
-    <h2>OUR PRICE LIST</h2>
-    <p>Discover our range of services designed to make you look and feel your best.</p>
-    <div class="price-list-container">
-      <div class="price-card">
-        <h3>Hair Cuts</h3>
-        <div class="price-item">
-          <span>Women's Cut & Style</span>
-          <strong>$85</strong>
-        </div>
-        <div class="price-item">
-          <span>Men's Cut</span>
-          <strong>$50</strong>
-        </div>
-        <div class="price-item">
-          <span>Kids Cut (Under 12)</span>
-          <strong>$35</strong>
-        </div>
-        <div class="price-item">
-          <span>Fringe Trim</span>
-          <strong>$15</strong>
-        </div>
-      </div>
-      <div class="price-card">
-        <h3>Colour & Highlights</h3>
-        <div class="price-item">
-          <span>Full Head Colour</span>
-          <strong>From $150</strong>
-        </div>
-        <div class="price-item">
-          <span>Half Head Highlights</span>
-          <strong>From $120</strong>
-        </div>
-        <div class="price-item">
-          <span>Full Head Highlights</span>
-          <strong>From $180</strong>
-        </div>
-        <div class="price-item">
-          <span>Balayage / Ombre</span>
-          <strong>From $220</strong>
-        </div>
-        <div class="price-item">
-            <span>Root Touch-Up</span>
-            <strong>From $90</strong>
-        </div>
-      </div>
-      <div class="price-card">
-        <h3>Styling & Treatments</h3>
-        <div class="price-item">
-          <span>Blow Dry (Short/Medium)</span>
-          <strong>$60</strong>
-        </div>
-        <div class="price-item">
-          <span>Blow Dry (Long/Thick)</span>
-          <strong>$75</strong>
-        </div>
-        <div class="price-item">
-          <span>Updo / Special Occasion</span>
-          <strong>From $100</strong>
-        </div>
-        <div class="price-item">
-            <span>Deep Conditioning Treatment</span>
-            <strong>$45</strong>
-        </div>
-        <div class="price-item">
-            <span>Keratin Treatment</span>
-            <strong>From $250</strong>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="about-section">
-    <h2>ABOUT US</h2>
-    <div class="about-content">
-        
-        <div class="about-text">
-            <p>Welcome to [Your Salon Name], where style meets sophistication. We are passionate about hair and dedicated to providing our clients with exceptional service in a relaxed and inviting atmosphere. Our team of highly skilled stylists stays up-to-date with the latest trends and techniques, ensuring you always receive a fresh and modern look that complements your individual style.</p>
-            <p>We believe in using only the highest quality products to nourish and protect your hair, leaving it healthy, shiny, and vibrant. Whether you're looking for a bold new cut, a stunning colour transformation, or a simple trim, we're here to make your hair dreams a reality. Come in, relax, and let us pamper you!</p>
-            <p>Conveniently located in Melbourne, we pride ourselves on creating a friendly and welcoming environment for all our clients. We look forward to seeing you soon!</p>
-        </div>
-    </div>
-  </section>
-
-  <section id="book-now" class="booking-form-section">
-    <h2>BOOK YOUR APPOINTMENT</h2>
-    <div class="booking-form-panel">
-      <form action="#" method="POST">
-        <label for="full-name">Full Name:</label>
-        <input type="text" id="full-name" name="full_name" required>
-
-        <label for="email-book">Email:</label>
-        <input type="email" id="email-book" name="email" required>
-
-        <label for="phone-book">Phone:</label>
-        <input type="tel" id="phone-book" name="phone">
-
-        <label for="service">Desired Service:</label>
-        <select id="service" name="service" required>
-          <option value="">-- Please select a service --</option>
-          <option value="womens-cut">Women's Cut & Style</option>
-          <option value="mens-cut">Men's Cut</option>
-          <option value="kids-cut">Kids Cut</option>
-          <option value="full-colour">Full Head Colour</option>
-          <option value="half-highlights">Half Head Highlights</option>
-          <option value="full-highlights">Full Head Highlights</option>
-          <option value="balayage">Balayage / Ombre</option>
-          <option value="root-touchup">Root Touch-Up</option>
-          <option value="blow-dry-short">Blow Dry (Short/Medium)</option>
-          <option value="blow-dry-long">Blow Dry (Long/Thick)</option>
-          <option value="updo">Updo / Special Occasion</option>
-          <option value="deep-treatment">Deep Conditioning Treatment</option>
-          <option value="keratin">Keratin Treatment</option>
-          <option value="other">Other (please specify below)</option>
-        </select>
-
-        <label for="appointment-date">Preferred Date:</label>
-        <input type="date" id="appointment-date" name="appointment_date" required>
-
-        <label for="appointment-time">Preferred Time:</label>
-        <input type="time" id="appointment-time" name="appointment_time" min="09:00" max="17:00" required>
-        <small style="display: block; margin-top: -1rem; margin-bottom: 1rem; color: #555;">Salon hours: 9:00 AM - 5:00 PM</small>
-
-        <label for="message-book">Any specific requests or details?</label>
-        <textarea id="message-book" name="message" rows="5"></textarea>
-
-        <button type="submit">SUBMIT BOOKING REQUEST</button>
-      </form>
-    </div>
-  </section>
-
-  <section id="contact" class="contact-section" style="background-color: #f0f0f0; padding-bottom: 2rem;">
-    <h2>CONTACT US</h2>
-    <p>Have questions or need assistance? Reach out to us!</p>
-    <p><strong>Phone:</strong> 123 456 789</p>
-    <p><strong>Email:</strong> info@yoursalon.com</p>
-    <p><strong>Address:</strong> 123 Salon Street, Melbourne VIC 3000</p>
-    <p style="margin-top: 2rem;">Follow us on social media for updates and inspiration!</p>
+    <section class="hero">
+        <h1>WELCOME</h1>
+        <h2>Now taking new clients.</h2>
+        <a href="#book-now" class="cta-button">Book now.</a>
     </section>
 
-  <script>
-    // Mobile Menu Toggle
-    function toggleMobileMenu() {
-      document.getElementById("mobileNav").classList.toggle("open");
-    }
+    <section id="price-list" class="price-list-section">
+        <h2>OUR PRICE LIST</h2>
+        <p>Discover our range of services designed to make you look and feel your best.</p>
+        <div class="price-list-container">
+            <div class="price-card">
+                <h3>Hair Cuts</h3>
+                <div class="price-item">
+                    <span>Women's Cut & Style</span>
+                    <strong>$85</strong>
+                </div>
+                <div class="price-item">
+                    <span>Men's Cut</span>
+                    <strong>$50</strong>
+                </div>
+                <div class="price-item">
+                    <span>Kids Cut (Under 12)</span>
+                    <strong>$35</strong>
+                </div>
+                <div class="price-item">
+                    <span>Fringe Trim</span>
+                    <strong>$15</strong>
+                </div>
+            </div>
+            <div class="price-card">
+                <h3>Colour & Highlights</h3>
+                <div class="price-item">
+                    <span>Full Head Colour</span>
+                    <strong>From $150</strong>
+                </div>
+                <div class="price-item">
+                    <span>Half Head Highlights</span>
+                    <strong>From $120</strong>
+                </div>
+                <div class="price-item">
+                    <span>Full Head Highlights</span>
+                    <strong>From $180</strong>
+                </div>
+                <div class="price-item">
+                    <span>Balayage / Ombre</span>
+                    <strong>From $220</strong>
+                </div>
+                <div class="price-item">
+                    <span>Root Touch-Up</span>
+                    <strong>From $90</strong>
+                </div>
+            </div>
+            <div class="price-card">
+                <h3>Styling & Treatments</h3>
+                <div class="price-item">
+                    <span>Blow Dry (Short/Medium)</span>
+                    <strong>$60</strong>
+                </div>
+                <div class="price-item">
+                    <span>Blow Dry (Long/Thick)</span>
+                    <strong>$75</strong>
+                </div>
+                <div class="price-item">
+                    <span>Updo / Special Occasion</span>
+                    <strong>From $100</strong>
+                </div>
+                <div class="price-item">
+                    <span>Deep Conditioning Treatment</span>
+                    <strong>$45</strong>
+                </div>
+                <div class="price-item">
+                    <span>Keratin Treatment</span>
+                    <strong>From $250</strong>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // Header Scroll Logic (Semi-Lock Header)
-    let lastScrollY = window.scrollY;
-    const header = document.querySelector('header');
-    const headerHeight = header.offsetHeight; // Get header height
+    <section id="about" class="about-section">
+        <h2>ABOUT US</h2>
+        <div class="about-content">
+            
+            <div class="about-text">
+                <p>Welcome to [Your Salon Name], where style meets sophistication. We are passionate about hair and dedicated to providing our clients with exceptional service in a relaxed and inviting atmosphere. Our team of highly skilled stylists stays up-to-date with the latest trends and techniques, ensuring you always receive a fresh and modern look that complements your individual style.</p>
+                <p>We believe in using only the highest quality products to nourish and protect your hair, leaving it healthy, shiny, and vibrant. Whether you're looking for a bold new cut, a stunning colour transformation, or a simple trim, we're here to make your hair dreams a reality. Come in, relax, and let us pamper you!</p>
+                <p>Conveniently located in Melbourne, we pride ourselves on creating a friendly and welcoming environment for all our clients. We look forward to seeing you soon!</p>
+            </div>
+        </div>
+    </section>
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > lastScrollY && window.scrollY > headerHeight) {
-        // Scrolling down and past header height
-        header.style.top = `-${headerHeight}px`; // Hide header
-      } else if (window.scrollY < lastScrollY || window.scrollY <= headerHeight) {
-        // Scrolling up or at the top of the page
-        header.style.top = '0'; // Show header
-      }
-      lastScrollY = window.scrollY;
-    });
+    <section id="book-now" class="booking-form-section">
+        <h2>BOOK YOUR APPOINTMENT</h2>
+        <div class="booking-form-panel">
+            <form action="#" method="POST">
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full_name" required>
 
-    // Smooth Scroll for Anchor Links (Optional, but good for UX)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+                <label for="email-book">Email:</label>
+                <input type="email" id="email-book" name="email" required>
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+                <label for="phone-book">Phone:</label>
+                <input type="tel" id="phone-book" name="phone">
 
-            // Close mobile menu if open after clicking an anchor
-            if (document.getElementById("mobileNav").classList.contains("open")) {
-                toggleMobileMenu();
+                <label for="service">Desired Service:</label>
+                <select id="service" name="service" required>
+                    <option value="">-- Please select a service --</option>
+                    <option value="womens-cut">Women's Cut & Style</option>
+                    <option value="mens-cut">Men's Cut</option>
+                    <option value="kids-cut">Kids Cut</option>
+                    <option value="full-colour">Full Head Colour</option>
+                    <option value="half-highlights">Half Head Highlights</option>
+                    <option value="full-highlights">Full Head Highlights</option>
+                    <option value="balayage">Balayage / Ombre</option>
+                    <option value="root-touchup">Root Touch-Up</option>
+                    <option value="blow-dry-short">Blow Dry (Short/Medium)</option>
+                    <option value="blow-dry-long">Blow Dry (Long/Thick)</option>
+                    <option value="updo">Updo / Special Occasion</option>
+                    <option value="deep-treatment">Deep Conditioning Treatment</option>
+                    <option value="keratin">Keratin Treatment</option>
+                    <option value="other">Other (please specify below)</option>
+                </select>
+
+                <label for="appointment-date">Preferred Date:</label>
+                <input type="date" id="appointment-date" name="appointment_date" required>
+
+                <label for="appointment-time">Preferred Time:</label>
+                <input type="time" id="appointment-time" name="appointment_time" min="09:00" max="17:00" required>
+                <small style="display: block; margin-top: -1rem; margin-bottom: 1rem; color: #555;">Salon hours: 9:00 AM - 5:00 PM</small>
+
+                <label for="message-book">Any specific requests or details?</label>
+                <textarea id="message-book" name="message" rows="5"></textarea>
+
+                <button type="submit">SUBMIT BOOKING REQUEST</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section" style="background-color: #f0f0f0; padding-bottom: 2rem;">
+        <h2>CONTACT US</h2>
+        <p>Have questions or need assistance? Reach out to us!</p>
+        <p><strong>Phone:</strong> 123 456 789</p>
+        <p><strong>Email:</strong> info@yoursalon.com</p>
+        <p><strong>Address:</strong> 123 Salon Street, Melbourne VIC 3000</p>
+        <p style="margin-top: 2rem;">Follow us on social media for updates and inspiration!</p>
+    </section>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            document.getElementById("mobileNav").classList.toggle("open");
+        }
+
+        // Header Scroll Logic (Semi-Lock Header)
+        let lastScrollY = window.scrollY;
+        const header = document.querySelector('header');
+        const headerHeight = header.offsetHeight; // Get header height
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > headerHeight) {
+                // Scrolling down and past header height
+                header.style.top = `-${headerHeight}px`; // Hide header
+            } else if (window.scrollY < lastScrollY || window.scrollY <= headerHeight) {
+                // Scrolling up or at the top of the page
+                header.style.top = '0'; // Show header
             }
+            lastScrollY = window.scrollY;
         });
-    });
 
-    // Automatically set min date for booking form to today
-    document.addEventListener('DOMContentLoaded', () => {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = (today.getMonth() + 1).toString().padStart(2, '0');
-        const day = today.getDate().toString().padStart(2, '0');
-        const minDate = `${year}-${month}-${day}`;
-        document.getElementById('appointment-date').setAttribute('min', minDate);
-    });
-  </script>
+        // Smooth Scroll for Anchor Links (Optional, but good for UX)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open after clicking an anchor
+                if (document.getElementById("mobileNav").classList.contains("open")) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // Automatically set min date for booking form to today
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = (today.getMonth() + 1).toString().padStart(2, '0');
+            const day = today.getDate().toString().padStart(2, '0');
+            const minDate = `${year}-${month}-${day}`;
+            document.getElementById('appointment-date').setAttribute('min', minDate);
+        });
+    </script>
 </body>
 </html>
